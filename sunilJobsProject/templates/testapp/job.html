@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{{jobname}} Information</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/jobs.css'%}">
+  </head>
+  <body>
+
+    <h1>{{jobname}} Information</h1>
+    {% if jobname == 'HydraBad Job'%}
+    <img src="{% static 'images/hyd1.jpg'%}" alt="">
+    <img src="{% static 'images/hyd2.jpg'%}" alt="">
+    <img src="{% static 'images/hyd3.jpg'%}" alt="">
+    <hr>
+    {% endif %}
+
+{% if jobs_list %}
+<p id="top"></p>
+<a id='scroll' href="#bottom"> <img src="{% static "images/down.jpg"%}" alt=""> </a> <br> <br>
+   <table border="2">
+     <thead>
+       <th>Date</th>
+       <th>Company</th>
+       <th>Title</th>
+       <th>Eligibility</th>
+       <th>Adrress</th>
+       <th>Email</th>
+       <th>Phone Number</th>
+     </thead>
+     {% for job in jobs_list %}
+     <tr>
+       <td>{{job.date}}</td>
+       <td>{{job.company}}</td>
+       <td>{{job.Title}}</td>
+       <td>{{job.eligibility}}</td>
+       <td>{{job.address}}</td>
+       <td>{{job.email}}</td>
+       <td>{{job.phonenumber}}</td>
+
+     </tr>
+     {% endfor %}
+   </table>
+   {% else %}
+    <p id="specialp"> No jobs found in {{jobname}}</p>
+    <p id="bottom"></p>
+    <a href="#top"> Click to go top </a>
+{% endif %}
+
+<p id="bottom"></p>
+<a id='scroll' href="#top"> <img src="{% static "images/up.jpg"%}" alt=""> </a>
+  </body>
+</html>
